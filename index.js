@@ -106,4 +106,88 @@ async function exemploEvery(){
     console.log(brasileiros);
 }
 
-exemploEvery();
+async function exemploSort01(){
+    const dadosRecebidos = await pegaDados();
+
+    const dadosOrdenados = dadosRecebidos.sort((p1,p2) => {
+        return p2.dob.age - p1.dob.age;
+    }).map(pessoa => {
+        return pessoa.dob.age
+    });
+
+    //o sort é um comando que permite voce ordenar os dados de acordo com um criterio que voce deseja.
+    console.log(dadosOrdenados);
+}
+
+async function exemploSort02(){
+    const dadosRecebidos = await pegaDados();
+
+    const dadosOrdenados = dadosRecebidos.sort((p1,p2) => {
+        return p1.name.first.localeCompare(p2.name.first);
+    }).map(pessoa => {
+        return{
+            "nome": pessoa.name.first + " " + pessoa.name.last
+        }
+    })
+    //o sort é um comando que permite voce ordenar os dados de acordo com um criterio que voce deseja.
+
+    console.log(dadosOrdenados);
+}
+
+async function exemploIncludes(){
+    const dadosRecebidos = await pegaDados();
+
+    const dados = [];
+
+    dadosRecebidos.forEach(pessoa => {
+        if(pessoa.name.first.includes("MA")){
+            dados.push(pessoa.name.first);
+        }
+    })
+
+    //
+
+    console.log(dados);
+}
+
+
+async function exemploIncludes2(){
+    const dadosRecebidos = await pegaDados();
+
+    const dados = [];
+
+    dadosRecebidos.forEach(pessoa => {
+        if(pessoa.name.first.toLowerCase().includes("MA".toLowerCase())){
+            dados.push(pessoa.name.first);
+            //toUpperCase()
+            //Captalize()
+        }
+    })
+    console.log(dados);
+}
+
+
+async function exStartsWith(){
+    const dadosRecebidos = await pegaDados();
+
+    const dados = [];
+
+    dadosRecebidos.forEach(pessoa => {
+        if(pessoa.name.first.startsWith("A")) {
+            dados.push(pessoa.name.first);
+        }
+    });
+    console.log(dados);
+}
+
+async function exLength(){
+    const dadosRecebidos = await pegaDados();
+
+    const dados = dadosRecebidos.length;
+
+    console.log(dados);
+    
+}
+
+
+exLength();
